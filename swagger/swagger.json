@@ -1,0 +1,264 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "BookBuddy API",
+    "description": "API for managing books, blogs, and users"
+  },
+  "host": "localhost:3000",
+  "basePath": "/api",
+  "paths": {
+    "/books": {
+      "get": {
+        "summary": "Get all books",
+        "responses": {
+          "200": {
+            "description": "List of books"
+          }
+        }
+      },
+      "post": {
+        "summary": "Add a new book",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "book",
+            "description": "Book data",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": { "type": "string" },
+                "author": { "type": "string" },
+                "price": { "type": "number" },
+                "rating": { "type": "number" },
+                "sales_count": { "type": "integer" },
+                "upload_date": { "type": "string", "format": "date-time" },
+                "cover_image": { "type": "string" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Book created"
+          }
+        }
+      }
+    },
+    "/blogs": {
+      "get": {
+        "summary": "Get all blogs",
+        "responses": {
+          "200": {
+            "description": "List of blogs",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": { "type": "integer" },
+                      "title": { "type": "string" },
+                      "content": { "type": "string" },
+                      "author": { "type": "string" },
+                      "created_at": { "type": "string", "format": "date-time" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Add a new blog",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "blog",
+            "description": "Blog data",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": { "type": "string" },
+                "content": { "type": "string" },
+                "author": { "type": "string" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Blog created"
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "summary": "Get all users",
+        "responses": {
+          "200": {
+            "description": "List of users",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": { "type": "integer" },
+                      "name": { "type": "string" },
+                      "email": { "type": "string" },
+                      "phoneNumber": { "type": "string" },
+                      "membership": { "type": "string" },
+                      "image": { "type": "string" },
+                      "age": { "type": "integer" },
+                      "address": { "type": "string" },
+                      "bookCount": { "type": "integer" },
+                      "BlogCount": { "type": "integer" },
+                      "rating": { "type": "number" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Add a new user",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "user",
+            "description": "User data",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string" },
+                "email": { "type": "string" },
+                "phoneNumber": { "type": "string" },
+                "membership": { "type": "string" },
+                "image": { "type": "string" },
+                "age": { "type": "integer" },
+                "address": { "type": "string" },
+                "bookCount": { "type": "integer" },
+                "BlogCount": { "type": "integer" },
+                "rating": { "type": "number" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "User created"
+          }
+        }
+      },
+      "/users/{id}": {
+        "get": {
+          "summary": "Get a user by ID",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "integer",
+              "description": "ID of the user to retrieve"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "User found",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "id": { "type": "integer" },
+                      "name": { "type": "string" },
+                      "email": { "type": "string" },
+                      "phoneNumber": { "type": "string" },
+                      "membership": { "type": "string" },
+                      "image": { "type": "string" },
+                      "age": { "type": "integer" },
+                      "address": { "type": "string" },
+                      "bookCount": { "type": "integer" },
+                      "BlogCount": { "type": "integer" },
+                      "rating": { "type": "number" }
+                    }
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "User not found"
+            }
+          }
+        },
+        "put": {
+          "summary": "Update a user by ID",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "integer",
+              "description": "ID of the user to update"
+            },
+            {
+              "in": "body",
+              "name": "user",
+              "description": "Updated user data",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "email": { "type": "string" },
+                  "phoneNumber": { "type": "string" },
+                  "membership": { "type": "string" },
+                  "image": { "type": "string" },
+                  "age": { "type": "integer" },
+                  "address": { "type": "string" },
+                  "bookCount": { "type": "integer" },
+                  "BlogCount": { "type": "integer" },
+                  "rating": { "type": "number" }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "User updated"
+            },
+            "404": {
+              "description": "User not found"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Delete a user by ID",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "integer",
+              "description": "ID of the user to delete"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "User deleted"
+            },
+            "404": {
+              "description": "User not found"
+            }
+          }
+        }
+      }
+    }
+  }
+}
