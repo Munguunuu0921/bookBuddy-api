@@ -5,11 +5,13 @@ const cors = require('cors'); // Importing cors module
 const swaggerUi = require('swagger-ui-express');
 const booksRoutes = require('./routes/booksRoutes');
 const usersRoutes = require('./routes/usersRoutes');
+const basketRoutes = require('./routes/basketRoutes');
 const blogsRoutes = require('./routes/blogsRoutes'); // Import blogs routes
 const swaggerDocument = require('./swagger/swagger.json');
 
 // Initialize the express app
 const app = express();
+app.use(express.json());
 
 // Use cors after app initialization
 app.use(cors());
@@ -28,6 +30,7 @@ app.get('/', (req, res) => {
 // Routes
 app.use('/api/books', booksRoutes); // Existing books routes
 app.use('/api/users', usersRoutes);
+app.use('/api/basket', basketRoutes);
 app.use('/api/blogs', blogsRoutes); // Add blogs routes
 
 // Server
