@@ -9,4 +9,6 @@ router.get('/:id', booksController.getBookById); // ID-аар ном авах
 router.put('/:id', booksController.updateBook); // Ном шинэчлэх
 router.delete('/:id', booksController.deleteBook); // Ном устгах
 
+router.put('/add-to-basket/:id', booksController.addToBasket); // Номыг сагс руу нэмэх
+
 module.exports = router;
